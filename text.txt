@@ -1,0 +1,3 @@
+username:talkio05082
+pass:D0AgaArdcmIZDzwf
+link:mongodb+srv://talkio05082:D0AgaArdcmIZDzwf@cluster0.8fidm.mongodb.net/
