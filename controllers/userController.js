@@ -147,7 +147,7 @@ const loginUser=async(req,res)=>{
             .clearCookie('accesstoken',options)
             .json({
                 message:"Logged out Successfully",
-                Success:trueu
+                Success:true
             })
         } catch (error) {
             console.log(error.message);
