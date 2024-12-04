@@ -72,7 +72,7 @@ const loginUser=async(req,res)=>{
              Success:false
          })
         }
-        const token=await encrypt(checkUser._id);
+        const token= encrypt(checkUser._id);
         const options={
          httpOnly:true,
          secure:true
@@ -120,5 +120,39 @@ const loginUser=async(req,res)=>{
         }
 
     }
+    //Logout
+    const logout=async(req,res)=>{
+        const id=req.userId;
+        if(!id){
+            return res.status(404)
+            .json({
+                message:"User not found",
+                Success:false
+            })
+        }
+        try {
+            const findId=await Users.findById(id).select('-Password');
+            if(!findId){
+                return res.status(404)
+                .json({
+                    message:"User not found",
+                    Success:false
+                })
+            }
+            const options={
+                httpOnly:true,
+                secure:true
+            }
+            return res.status(200)
+            .clearCookie('accesstoken',options)
+            .json({
+                message:"Logged out Successfully",
+                Success:trueu
+            })
+        } catch (error) {
+            console.log(error.message);
+        }
+        
+    }
 
-module.exports={registerUser,loginUser,profile}
+module.exports={registerUser,loginUser,profile,logout}

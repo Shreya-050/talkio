@@ -1,15 +1,15 @@
 var jwt = require('jsonwebtoken');
 
 
-const encrypt=async(id)=>{
-    jwt.sign({
+const encrypt=(id)=>{
+   const encryptData=jwt.sign({
        User_id:id
     }, 'shreya');
-    return encrypt;
+    return encryptData;
 } 
 
 
-const decrypt=async(token)=>{
+const decrypt=(token)=>{
     var decoded = jwt.verify(token, 'shreya');
     return decoded;
 }
